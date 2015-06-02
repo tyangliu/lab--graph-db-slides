@@ -1,0 +1,111 @@
+@import "bourbon/bourbon";
+
+$primary-font-family: "proxima-nova", serif;
+$heading-font-family: "jubilat", sans-serif;
+$code-font-family: "source-code-pro", monospace;
+
+$primary-font-size: 19px;
+$h1-font-size: 48px;
+
+$line-height: 1.5em;
+
+body {
+  color: white;
+  font-family: $primary-font-family;
+  line-height: $line-height;
+  font-size: $primary-font-size;
+}
+
+.reveal {
+  .slides {
+    width: 100% !important;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  h1 {
+    font-size: $h1-font-size;
+    font-family: $heading-font-family;
+    line-height: $line-height;
+  }
+
+  p, li {
+    margin-bottom: 1em;
+  }
+
+  .title h1 {
+    text-transform: lowercase;
+  }
+
+  table {
+    font-size: 16px;
+    border: 1px solid white;
+    margin: 1em 1em 1em 0;
+  }
+
+  .you-goofed-up {
+    font-weight: bold;
+  }
+
+  td, th {
+    padding: 10px;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  code {
+    padding: 20px;
+    font-family: $code-font-family;
+    @include border-top-radius(3px);
+    @include border-right-radius(3px);
+    @include border-bottom-radius(3px);
+    @include border-left-radius(3px);
+    margin: 10px 0;
+  }
+
+  .col-table {
+    width: 40%;
+    float: left;
+  }
+
+  .title-text-container {
+    background: #005787;
+    padding: 30px 10%;
+    text-align: right;
+    position: relative;
+  }
+  .title-nodes-svg {
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-48.5%));
+    left: 5%;
+  }
+
+  .slide-text-container {
+    h1 {
+      background: #005787;
+      padding: 30px 10%;
+    }
+
+    ul {
+      padding: 30px 10%;
+    }
+
+    text-align: left;
+
+    li {
+      @include clearfix;
+    }
+  }
+
+    .large {
+      font-size: 1.3em;
+    }
+
+}
+

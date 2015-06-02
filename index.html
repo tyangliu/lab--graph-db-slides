@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>.svg animations with snap.svg</title>
+
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" href="stylesheets/styles.css" id="theme">
+
+    <script src="//use.typekit.net/gno6hsf.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section class="title" data-background="#2369a3" data-transition="zoom">
+                <div class="title-text-container">
+                    <h1>Graph Databases</h1>
+                    <p>Thomas Liu</p>
+                    <object class="title-nodes-svg" data="images/title-nodes.svg" type="image/svg+xml">
+                    </object>
+                </div>
+            </section>
+            <section data-background="#2369a3" data-transition="slide">
+                <div class="slide-text-container">
+                    <h1>What motivated NoSQL?</h1>
+                    <ul>
+                        <li>Need for big data & <em>horizontal scaling</em></li>
+                        <li>Ease of development</li>
+                        <li>Awkward modeling & impedance mismatches with RDBMSes</li>
+                    </ul>
+                </div>
+            </section>
+            <section data-background="#2369a3" data-transition="slide">
+                <div class="slide-text-container">
+                    <h1>Characteristics of NoSQL databases</h1>
+                    <ul>
+                        <li>Schemaless</li>
+                        <li>Denormalized</li>
+                        <li>Same trends happening with RDBMS modeling</li>
+                        <li class="fragment large"><em>WHY?!!?</em> (╯°□°) ╯︵ ┻━┻</li>
+                    </ul>
+                </div>
+            </section>
+            <section data-background="#2369a3" data-transition="slide">
+                <div class="slide-text-container">
+                    <h1>About relational databases</h1>
+                    <ul>
+                        <li>
+                            Normalization: breaking up tables to ensure data consistency
+                            <div>
+                            <table class="col-table">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Initials</th>
+                                    <th>Message</th>
+                                </tr>
+                                <tr>
+                                    <td>Thomas Liu</td>
+                                    <td>TL</td>
+                                    <td>Hey spongebob</td>
+                                </tr>
+                                <tr>
+                                    <td>Sponge Bob</td>
+                                    <td>SB</td>
+                                    <td>Hi</td>
+                                </tr>
+                                <tr>
+                                    <td>Sponge Bob</td>
+                                    <td class="you-goofed-up">OOPS</td>
+                                    <td>I'm ready</td>
+                                </tr>
+                            </table>
+                            <div class="col-table">
+                                <table>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Message</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Thomas Liu</td>
+                                        <td>Hey spongebob</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sponge Bob</td>
+                                        <td>Hi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sponge Bob</td>
+                                        <td>I'm ready</td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Initials</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Thomas Liu</td>
+                                        <td>TL</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sponge Bob</td>
+                                        <td>SB</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            </div>
+                        </li>
+                        <li>Relational databases originally designed for ONE database server</li>
+                        <li>With clusters, constraints from careful database design becomes very hard to enforce</li>
+                        <li>&#8230;Although some modern solutions exist (e.g. Galera Cluster)</li>
+                    </ul>
+                </div>
+            </section>
+            <section data-background="#2369a3" data-transition="slide">
+                <section>
+                    <div class="slide-text-container">
+                        <h1>Database Options</h1>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>Relational</h1>
+                        <ul>
+                            <li>Postgres</li>
+                            <li>Oracle Database</li>
+                            <li>Microsoft SQL Server</li>
+                            <li>MySQL</li>
+                            <li>MariaDB</li>
+                            <li>etc.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>Key-value store</h1>
+                        <ul>
+                            <li>Redis</li>
+                            <li>Mem-cached (in-memory only)</li>
+                            <li>Riak</li>
+                            <li>Cookies & HTML5 Local Storage</li>
+                            <li>
+                                Example of key-value data:
+
+                                <table>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Value</th>
+                                    </tr>
+                                    <tr>
+                                        <td>thomas_email</td>
+                                        <td>hello@tliu.me</td>
+                                    </tr>
+                                    <tr>
+                                        <td>thomas_phone</td>
+                                        <td>123-456-7890</td>
+                                    </tr>
+                                    <tr>
+                                        <td>elmo_email</td>
+                                        <td>elmo@tliu.me</td>
+                                    </tr>
+                                    <tr>
+                                        <td>elmo_phone</td>
+                                        <td>000-000-0000</td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>Document store</h1>
+                        <ul>
+                            <li>MongoDB</li>
+                            <li>CouchDB</li>
+                            <li>Most popular format is JSON</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>Column family</h1>
+                        <ul>
+                            <li>Cassandra</li>
+                            <li>BigTable (Google)</li>
+                            <li>HBase</li>
+                            <li>
+                                Example of column-family data:
+
+                                <table>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Columns</th>
+                                    </tr>
+                                    <tr>
+                                        <td>thomas</td>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <th>email</th>
+                                                    <th>phone</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>hello@tliu.me</td>
+                                                    <td>123-456-7890</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>ness</td>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <th>email</th>
+                                                    <th>phone</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>null</td>
+                                                    <td>no</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>Object store</h1>
+                        <ul>
+                            <li>IndexedDB (javascript objects)</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>Graph databases</h1>
+                        <ul>
+                            <li>neo4j</li>
+                            <li>OrientDB (hybrid)</li>
+                            <li>TitanDB</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+            <section data-background="#2369a3" data-transition="slide">
+                <div class="slide-text-container">
+                    <h1>About graph databases</h1>
+                    <ul>
+                        <li>Nodes connected by edges (read: circle--line--circle)</li>
+                        <li>Very natural way to model many common domains</li>
+                        <li>Relationships are direct references: O(1) path traversal in best case scenariog</li>
+                        <li>Expressive and exploration-motivating queries</li>
+                    </ul>
+                </div>
+            </section>
+            <section data-background="#2369a3" data-transition="slide">
+                <div class="slide-text-container">
+                    <h1>Today's subject: movie data with neo4j</h1>
+                    <ul>
+                        <li>Sample data provided by neo4j, because don't got time to make my own</li>
+                        <li>Why neo4j: nice UI, clean query syntax, clean Scala driver available (AnormCypher)</li>
+                    </ul>
+                </div>
+            </section>
+            <section data-background="#2369a3" data-transition="slide">
+                <section>
+                    <div class="slide-text-container">
+                        <h1>A step back: modeling for relational databases</h1>
+                        <ul>
+                            <li>Two entities: movies and people</li>
+                            <li>A person can play different roles in a movie: director, producer, writer, reviewer, actor</li>
+                            <li>A person can follow another person</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>How the table schema would look:</h1>
+                        <ul>
+                            <li>No cardinality constraints for simplicity (i.e. one-to-one, many-to-one)</li>
+                            <li>
+                                movies:
+                                <table>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>title</th>
+                                        <th>released</th>
+                                        <th>tagline</th>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                people:
+                                <table>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>born</th>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                person_movie:
+                                <table>
+                                    <tr>
+                                        <th>person_id</th>
+                                        <th>movie_id</th>
+                                        <th>role_id</th>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                roles:
+                                <table>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="slide-text-container">
+                        <h1>How a simple query would look:</h1>
+                        <ul>
+                            <li>We want to know what each person's role was in each movie they were involved in</li>
+                            <li>
+                                SQL query:
+                                <pre><code class="SQL">
+SELECT p.name, r.name, m.title
+FROM   people p, person_movie pm, movies m, roles r
+WHERE  p.id = pm.person_id
+AND    pm.movie_id = m.id
+AND    pm.role_id = r.id;
+                                </code></pre>
+                            </li>
+                            <li>
+                                Equivalent Cypher query in neo4j:
+                                <pre><code class="cypher">
+MATCH (p:Person)-[r]->(m:Movie)
+RETURN p.name, type(r), m.title;
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="bower_components/reveal.js/js/reveal.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script type="text/javascript">
+        Reveal.initialize({history: true});
+        hljs.initHighlightingOnLoad();
+    </script>
+</body>
+</html>
